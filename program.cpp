@@ -7,6 +7,7 @@ using namespace std;
 
 bool validateInput();
 int mainmenu();
+const char *fileName = "file.dat";
 
 struct Employee
 {
@@ -81,7 +82,7 @@ void Employee::writeFile()
      else
      {
           fstream file;
-          file.open("demo.dat", ios::out | ios::app | ios::binary);
+          file.open(fileName, ios::out | ios::app | ios::binary);
 
           file.write((char *)this, sizeof(*this));
 
@@ -92,7 +93,7 @@ void Employee::writeFile()
 void Employee::readFile()
 {
      fstream file;
-     file.open("demo.dat", ios::in | ios::binary);
+     file.open(fileName, ios::in | ios::binary);
 
      if (!file)
      {
@@ -123,7 +124,7 @@ void Employee::showData()
 {
      cout << "Enter Your Name : ";
      cout << name << endl;
-     
+
      cout << "Enter Your ID : ";
      cout << id << endl;
 
@@ -142,7 +143,7 @@ void Employee::searchData(char *str)
      bool flag = false;
 
      fstream file;
-     file.open("demo.dat", ios::in | ios::binary);
+     file.open(fileName, ios::in | ios::binary);
 
      if (!file)
      {
@@ -174,7 +175,7 @@ void Employee::updateData(char *str)
 {
      bool flag = false;
      fstream file;
-     file.open("demo.dat", ios::in | ios::out | ios::ate | ios::binary);
+     file.open(fileName, ios::in | ios::out | ios::ate | ios::binary);
 
      if (!file)
      {
@@ -211,7 +212,7 @@ void Employee::deleteData(char *str)
      bool flag = true;
      ofstream fout;
      ifstream fin;
-     fin.open("demo.dat", ios::in | ios::binary);
+     fin.open(fileName, ios::in | ios::binary);
 
      if (!fin)
      {
@@ -233,7 +234,7 @@ void Employee::deleteData(char *str)
           fout.close();
 
           fstream f1, f2;
-          f1.open("demo.dat", ios::in | ios::binary);
+          f1.open(fileName, ios::in | ios::binary);
           f2.open("tempfile.dat", ios::in | ios::binary);
 
           while (true)
@@ -266,8 +267,8 @@ void Employee::deleteData(char *str)
                cin >> choice;
                if (choice == 1)
                {
-                    remove("demo.dat");
-                    rename("tempfile.dat", "demo.dat");
+                    remove(fileName);
+                    rename("tempfile.dat", fileName);
                     cout << "\n\nRecord is Deleted Successfully";
                }
           }
@@ -324,8 +325,8 @@ bool validateInput()
 
 int main()
 {
-	system("color f0");
-	system("title Employeee Managment System by Abubakar");
+     system("color f0");
+     system("title Employeee Managment System by Abubakar");
      bool check = true;
      char search[100];
      int size;
@@ -399,4 +400,3 @@ int main()
           system("pause");
      }
 }
-
