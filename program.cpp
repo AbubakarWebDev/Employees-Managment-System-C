@@ -9,10 +9,11 @@
 using namespace std;
 
 //***************************************************************
-//            FUNCTION PROTOTYPING USED IN PROJECTS
+//        FUNCTIONs PROTOTYPING THAT USED IN PROJECTS
 //****************************************************************
-bool validateInput();
-int mainmenu();
+int mainmenu();               // function that print the Main Menu on Console Screen.
+bool validateInput();         // fuction that Validate Input Prints Error.
+bool isEmpty(ifstream &file); // function that checks file is empty or not.
 
 //***************************************************************
 //                   GLOBAL VARIABLES
@@ -26,9 +27,8 @@ class Employee
 {
 private:
      int id;
-     char name[100];
-     int age;
-     int salary;
+     char name[100], post[100], department[100];
+     double salary;
 
 public:
      // constructor function
@@ -37,7 +37,8 @@ public:
           // Default Initialization Except Garbage Value
           id = 0;
           strcpy(name, "no name");
-          age = 0;
+          strcpy(name, "no post");
+          strcpy(name, "no department");
           salary = 0;
      }
 
@@ -46,9 +47,10 @@ public:
      void writeFile();           // function use to Write Employees Records in a file that get From User.
      void readFile();            // function use to Read Employees Records from a file.
      void showData();            // function use to Show All Employees Records.
-     void searchData(char *str); // function use to search Data from file.
-     void updateData(char *str); // function use to Update Data from file.
-     void deleteData(char *str); // function use to Delete Data from file.
+     void searchData(int input); // function use to search Data from file.
+     void updateData(int input); // function use to Update Data from file.
+     void deleteData(int input); // function use to Delete Data from file.
+     void sortData();            // function that Sorts Employees Data in Desending Order w.r.t Salary.
 };
 
 //***************************************************************
@@ -60,28 +62,36 @@ label:
      bool flag;
 
      cin.ignore();
-     cout << "Enter Your Name : ";
+     cout << "Enter Employee Name : ";
      cin.getline(name, 100);
 
      flag = validateInput();
      if (flag)
           goto label;
 
-     cout << "Enter Your ID : ";
+     cout << "Enter Employee Unique ID : ";
      cin >> id;
 
      flag = validateInput();
      if (flag)
           goto label;
 
-     cout << "Enter Your Age : ";
-     cin >> age;
+     cin.ignore();
+     cout << "Enter Employee Post : ";
+     cin.getline(post, 100);
 
      flag = validateInput();
      if (flag)
           goto label;
 
-     cout << "Enter Your Salary : ";
+     cout << "Enter Employee Department : ";
+     cin.getline(department, 100);
+
+     flag = validateInput();
+     if (flag)
+          goto label;
+
+     cout << "Enter Employee Salary : ";
      cin >> salary;
 
      flag = validateInput();
@@ -108,7 +118,7 @@ void Employee::writeFile()
 
 void Employee::readFile()
 {
-     fstream file;
+     ifstream file;
      file.open(fileName, ios::in | ios::binary);
 
      if (!file)
@@ -117,7 +127,7 @@ void Employee::readFile()
      }
      else
      {
-          if (file.peek() == ifstream::traits_type::eof())
+          if (isEmpty(file))
           {
                cout << "\nYour File is Empty! No Record is Avialable to Show\n";
           }
@@ -138,23 +148,23 @@ void Employee::readFile()
 
 void Employee::showData()
 {
-     cout << "Enter Your Name : ";
+     cout << "\nEmployee Name is : ";
      cout << name << endl;
 
-     cout << "Enter Your ID : ";
+     cout << "Employee ID is : ";
      cout << id << endl;
 
-     cout << "Enter Your Age : ";
-     cout << age << endl;
+     cout << "Employee post is : ";
+     cout << post << endl;
 
-     cout << "Enter Your Salary : ";
+     cout << "Employee Department is : ";
+     cout << department << endl;
+
+     cout << "Employee Salary is : ";
      cout << salary << endl;
-
-     cout << endl
-          << endl;
 }
 
-void Employee::searchData(char *str)
+void Employee::searchData(int input)
 {
      bool flag = false;
 
@@ -170,7 +180,7 @@ void Employee::searchData(char *str)
           file.read((char *)this, sizeof(*this));
           while (!file.eof())
           {
-               if (!strcmp(str, name))
+               if (input == id)
                {
                     showData();
                     flag = true;
@@ -182,12 +192,12 @@ void Employee::searchData(char *str)
 
           if (!flag)
           {
-               cout << "Record For This Name Does Not Exist";
+               cout << "Record For This ID Does Not Exist";
           }
      }
 }
 
-void Employee::updateData(char *str)
+void Employee::updateData(int input)
 {
      bool flag = false;
      fstream file;
@@ -203,9 +213,10 @@ void Employee::updateData(char *str)
           file.read((char *)this, sizeof(*this));
           while (!file.eof())
           {
-               if (!strcmp(str, name))
+               if (input == id)
                {
                     showData();
+                    cout << "\nEnter Updated Record :- \n\n";
                     getData();
                     int position = (-1) * static_cast<int>(sizeof(*this));
                     file.seekp(position, ios::cur);
@@ -217,12 +228,16 @@ void Employee::updateData(char *str)
 
           if (!flag)
           {
-               cout << "Record For This Name Does Not Exist";
+               cout << "Record For This ID Does Not Exist";
+          }
+          else
+          {
+               cout << "\nNew Records Has Been Updated Successfully\n";
           }
      }
 }
 
-void Employee::deleteData(char *str)
+void Employee::deleteData(int input)
 {
      int c1, c2;
      bool flag = true;
@@ -240,7 +255,7 @@ void Employee::deleteData(char *str)
           fout.open("tempfile.dat", ios::out | ios::binary);
           while (!fin.eof())
           {
-               if (strcmp(str, name))
+               if (input != id)
                {
                     fout.write((char *)this, sizeof(*this));
                }
@@ -271,12 +286,23 @@ void Employee::deleteData(char *str)
 
           if (flag)
           {
-               cout << "Record For This Name Does Not Exist";
+               cout << "Record For This ID Does Not Exist";
           }
           else
           {
+          label:
+               fstream file;
+               file.open(fileName, ios::in | ios::binary);
                int choice;
-               cout << "Are Your Sure to Delete This Record\n";
+               while (file.read((char *)this, sizeof(*this)))
+               {
+                    if (input == id)
+                    {
+                         showData();
+                    }
+               }
+               file.close();
+               cout << "\nAre Your Sure to Delete The Above Record\n";
                cout << "1 : Yes\n";
                cout << "2 : No\n";
                cout << "Enter Your Choice : ";
@@ -287,6 +313,67 @@ void Employee::deleteData(char *str)
                     rename("tempfile.dat", fileName);
                     cout << "\n\nRecord is Deleted Successfully";
                }
+               else if (choice == 2)
+               {
+                    remove("tempfile.dat");
+               }
+               else
+               {
+                    cin.clear();
+                    cin.ignore();
+                    cout << "Error : Invalid Choice Detected! Please Enter Valid Choice";
+                    goto label;
+               }
+          }
+     }
+}
+
+void Employee::sortData()
+{
+     int size, fileSize, objSize, position;
+     Employee *ptr = NULL;
+
+     ifstream file;
+     file.open("file.dat", ios::in | ios::binary);
+
+     if (isEmpty(file))
+     {
+          cout << "\nYour File is Empty! No Record is Avialable to Show\n";
+     }
+     else
+     {
+          file.seekg(0, ios::end);
+
+          fileSize = static_cast<int>(file.tellg());
+          objSize = static_cast<int>(sizeof(*this));
+          size = fileSize / objSize;
+
+          ptr = new Employee[size];
+
+          file.seekg(0, ios::beg);
+
+          for (int i = 0; i < size; i++)
+          {
+               file.read((char *)&ptr[i], sizeof(*this));
+          }
+          file.close();
+
+          for (int i = 0; i < size; i++)
+          {
+               for (int j = i + 1; j < size; j++)
+               {
+                    if (ptr[i].salary < ptr[j].salary)
+                    {
+                         swap(ptr[i], ptr[j]);
+                    }
+               }
+          }
+
+          cout << "\n\n======== Sorted Employee Details With Respect to Salary ========\n\n";
+
+          for (int i = 0; i < size; i++)
+          {
+               ptr[i].showData();
           }
      }
 }
@@ -307,7 +394,8 @@ label:
      cout << "3 : Search Employees Records\n";
      cout << "4 : Update Employee Records\n";
      cout << "5 : Delete Employee Records\n";
-     cout << "6 : Exit Application\n";
+     cout << "6 : Sort Employee Records with respect to Salary\n";
+     cout << "7 : Exit Application\n";
      cout << "Enter Your Choice : ";
      cin >> choice;
 
@@ -342,15 +430,20 @@ bool validateInput()
      }
 }
 
+bool isEmpty(ifstream &file)
+{
+     return (file.peek() == ifstream::traits_type::eof());
+}
+
 //***************************************************************
 //    	THE MAIN FUNCTION OF PROGRAM
 //****************************************************************
 int main()
 {
      system("color f0");
-     system("title Employeee Managment System by Abubakar");
+     system("title Employeees Managment System by Muhammad Abubakar");
      bool check = true;
-     char search[100];
+     int search;
      int size;
      bool flag;
      Employee *ptr = NULL;
@@ -386,6 +479,7 @@ int main()
                     {
                          ptr[i].writeFile();
                     }
+                    cout << "\nNew Records Has Been Added Successfully\n";
                     break;
                }
           case 2:
@@ -393,24 +487,24 @@ int main()
                filedata.readFile();
                break;
           case 3:
-               cout << "Please Enter Employee Name That you Want to Search its Record : ";
-               cin.ignore();
-               cin.getline(search, 100);
+               cout << "Please Enter Employee Unique ID That you Want to Search its Record : ";
+               cin >> search;
                filedata.searchData(search);
                break;
           case 4:
-               cout << "Please Enter Employee Name That you Want to Update its Record : ";
-               cin.ignore();
-               cin.getline(search, 100);
+               cout << "Please Enter Employee Unique ID That you Want to Update its Record : ";
+               cin >> search;
                filedata.updateData(search);
                break;
           case 5:
-               cout << "Please Enter Employee Name That you Want to Delete its Record : ";
-               cin.ignore();
-               cin.getline(search, 100);
+               cout << "Please Enter Employee Unique ID you Want to Delete its Record : ";
+               cin >> search;
                filedata.deleteData(search);
                break;
           case 6:
+               filedata.sortData();
+               break;
+          case 7:
                cout << "\nThank You For Using This Application\n";
                check = false;
                break;
@@ -418,6 +512,7 @@ int main()
                cout << "Invalid Choice! Please Select Valid Choice.";
                break;
           }
+          cout << endl;
           cout << endl;
           system("pause");
      }
