@@ -1,3 +1,6 @@
+//***************************************************************
+//                   HEADER FILE USED IN PROJECT
+//****************************************************************
 #include <iostream>
 #include <fstream>
 #include <limits>
@@ -5,11 +8,21 @@
 #include <iomanip>
 using namespace std;
 
+//***************************************************************
+//            FUNCTION PROTOTYPING USED IN PROJECTS
+//****************************************************************
 bool validateInput();
 int mainmenu();
+
+//***************************************************************
+//                   GLOBAL VARIABLES
+//****************************************************************
 const char *fileName = "file.dat";
 
-struct Employee
+//***************************************************************
+//                   CLASS USED IN PROJECT
+//****************************************************************
+class Employee
 {
 private:
      int id;
@@ -29,15 +42,18 @@ public:
      }
 
      // member function
-     void getData();
-     void writeFile();
-     void readFile();
-     void showData();
-     void searchData(char *str);
-     void updateData(char *str);
-     void deleteData(char *str);
+     void getData();             // function use to get Employees Record From User.
+     void writeFile();           // function use to Write Employees Records in a file that get From User.
+     void readFile();            // function use to Read Employees Records from a file.
+     void showData();            // function use to Show All Employees Records.
+     void searchData(char *str); // function use to search Data from file.
+     void updateData(char *str); // function use to Update Data from file.
+     void deleteData(char *str); // function use to Delete Data from file.
 };
 
+//***************************************************************
+//           DEFINATION OF MEMBER FUNCTIONS OF CLASS
+//****************************************************************
 void Employee::getData()
 {
 label:
@@ -275,6 +291,9 @@ void Employee::deleteData(char *str)
      }
 }
 
+//***************************************************************
+//            FUNCTION DEFINATION USED IN PROJECTS
+//****************************************************************
 int mainmenu()
 {
 label:
@@ -323,6 +342,9 @@ bool validateInput()
      }
 }
 
+//***************************************************************
+//    	THE MAIN FUNCTION OF PROGRAM
+//****************************************************************
 int main()
 {
      system("color f0");
