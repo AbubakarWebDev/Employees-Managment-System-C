@@ -1,3 +1,5 @@
+![Repository Banner](Employees-Managment-System-Cplusplus.jpg)
+
 # Employees Managment System
 This Repository Contains Employee Mangagement project which is suitable for school or college mini project. It is written in c++ language in code::blocks IDE with MinGW compiler. It is console application without graphics. Whole project is completely based on file handling all the employee’s record are store in file. You learn how to store the data, editing data, searching data and deleting the data using file. Following features can be found in this project which is listed below.
  1. Built The Employee table.
