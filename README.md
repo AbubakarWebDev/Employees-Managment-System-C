@@ -1,5 +1,3 @@
-![Repository Banner](Employees-Managment-System-Cplusplus.jpg)
-
 # Employees Managment System
 This Repository Contains Employee Mangagement project which is suitable for school or college mini project. It is written in c++ language in code::blocks IDE with MinGW compiler. It is console application without graphics. Whole project is completely based on file handling all the employee’s record are store in file. You learn how to store the data, editing data, searching data and deleting the data using file. Following features can be found in this project which is listed below.
  1. Built The Employee table.
@@ -9,6 +7,10 @@ This Repository Contains Employee Mangagement project which is suitable for scho
  5. Edit an entry. 
  6. Search a record. 
  7. Sort the table.
+
+
+![Repository Banner](Employees-Managment-System-Cplusplus.jpg)
+
 
 # Introduction to Employee Management System Using C++
 Employ management system using C++ is menu driven program which allows us to add, update, delete, search and Sort record of an employee working in an organization. The program employee management system store employee ID, name, post, department and salary of employee. Initially, it has no data. Thus, we have to add employee records choosing appropriate option in this program (i.e. selecting option #1).
@@ -43,12 +45,20 @@ Click this Link : https://abubakarwebdev.github.io/webapplications/
 |[Online Api Tester Postman Application](https://abubakarwebdev.github.io/webapplications/api-tester-postman/api-tester-postman-application.html)                               | A Simple Javascript Application that is very useful for programmer because they sent a different types of request on specific site. So In This App we add "get" and "post" Request For a user.                                                                                                                                                             |
 |[Bricks Breaker Ball Game](https://abubakarwebdev.github.io/webapplications/bricks-breaker-ball-game/bricks-breaker-ball-game.html)                                            | A Simple Javascript Application that you Just break bricks with your ball. Easiest and simplest brick breaker game for everyone                                                 |
 |[Online Collage GPA Calculator](https://abubakarwebdev.github.io/webapplications/online-gpa-calculator/gpa-calculator.html)                                                    | A Simple Javascript Application that Calculate Your University, Collage GPA According to the given criteria.                                                                    |
+|[News Website Using Api](https://abubakarwebdev.github.io/webapplications/online-news-website/news-api-website.html)                                                           | A Simple Javascript Application that uses a Simple News Api and Make a Auto Posted News Content in a website                                                                    |
+|[Notes Maker Website](https://abubakarwebdev.github.io/webapplications/online-notes-taker/notes-taker-website.html)                                                            | A Simple Javascript Application that View, Create, Update, Delete and Search Your created Notes                                                                                 |
+|[Javascript Analouge Clock](https://abubakarwebdev.github.io/webapplications/javascript-analouge-clock/javascript-analouge-clock.html)                                         | A Simple Javascript Application that show a awesome analouge clock with neumorphism effect                                                                                      |
+|[Javascript Math Calculator](https://abubakarwebdev.github.io/webapplications/javascript-calculator/online-javascript-calculator.html)                                         | A Simple Javascript Application That Calculates a Mathematical Expression and Handles Logical and Syntax Errors Correctly.                                                      |
+|[Javascript Simple Dice Game](https://abubakarwebdev.github.io/webapplications/javascript-dice-game/online-javascript-dice-game.html)                                          | A Simple Javascript Application In Which two player are play with each other using dice. This app randomly created the number of dice and which player that got higher number on dic so this is winner.                                                                                                                                                          |
+|[Online Javascript Dictionary Application](https://abubakarwebdev.github.io/webapplications/javascript-dictionary-application/online-javascript-dictionary-application.html)   | A Simple Javascript Application that Shows a Defination, Synonyms & Antonyms of a word that user enters in application                                                          |
+|[Javascript Online CV Screener](https://abubakarwebdev.github.io/webapplications/javascript-cv-screening/online-cv-screening-javascript-application.html)                      | A Simple Javascript Application that Screens your C.Vs Job Applier and It Also Provide a checkmark For a Accept a Applier on your Company                                       |
+|[Online Todo List Application](https://abubakarwebdev.github.io/webapplications/todo-list-application/online-javascript-todo-list-application.html)                            | A Simple Javascript Application that Add, Delete, Update and Search your Task and Also You Mark Your Custom Tasks When you complete It.                                         |
 
 
 ## Our All Created Responsive Websites Link
 > There Are Many [Websites](https://abubakarwebdev.github.io/webapplications/#websites) That I Created. This is a Big List and I create many websites for my clients and many ther website for my personal use and for my hobby. Web Development is not my work. It is my passion and If You want see my create web applications so you easily see my all Web Application. I created This Websites With Pure HTML CSS & JS and Many Other Websites that I created is made with New Technology Like SaaS Bootstrap 5 Jquery PHP MySql and Much More. All The Websites Link is Given Below
 
-|Websites                                                                                             |Description                                                              |
+|Responsive Websites                                                                                  |Description                                                              |
 |-----------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------|
 |[Main Website](https://abubakarwebdev.github.io/websites)                                                                                                                      | It is The Main Website For Finding All My Created Lsit of Responsive, creative Websites. Kindly Visit This Website.                                                             |
 |[Website # 1](https://abubakarwebdev.github.io/websites/website-1/index.html)                                                                                                  | It is the first website that I created in my life with pure html css only.                                                                                                      |
